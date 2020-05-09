@@ -6,7 +6,7 @@ var app = express();
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.post('/api/messages', function (req, res) {
+app.post('/addApplication', function (req, res) {
 
     let app_name = '';
     let login_url = '';
