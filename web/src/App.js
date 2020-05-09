@@ -15,7 +15,9 @@ class App extends Component {
       <Router>
         <Security {...config.oidc}>
           <NavBar />
-          <SecureRoute path="/" exact component={Home} />
+          <main className="container">
+            <SecureRoute path="/" exact component={Home} />
+          </main>
           <Route path="/implicit/callback" component={LoginCallback} />
           <Footer />
         </Security>
