@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 import { checkAuthentication } from "../utils/helpers";
-import { withAuth } from "@okta/okta-react";
+import { withOktaAuth } from "@okta/okta-react";
 
-export default withAuth(
+export default withOktaAuth(
   class NavBar extends Component {
     constructor(props) {
       super(props);
@@ -22,11 +22,11 @@ export default withAuth(
     }
 
     async login() {
-      this.props.auth.login("/");
+      this.props.authService.login('/');
     }
-
+   
     async logout() {
-      this.props.auth.logout("/");
+      this.props.authService.logout('/');
     }
 
     handleChange = (e, { value }) => {

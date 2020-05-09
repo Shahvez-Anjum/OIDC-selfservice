@@ -2,25 +2,23 @@ import React, { Component } from "react";
 
 import axios from "axios";
 import config from "../utils/config";
-import { withAuth } from "@okta/okta-react";
+import { withOktaAuth } from "@okta/okta-react";
 
-export default withAuth(
+export default withOktaAuth(
   class Home extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        accessToken: '',
-        app_name: '',
-        login_url: '',
-        logout_url: '',
-        initiate_login_url: ''
-      }
+        accessToken: "",
+        app_name: "",
+        login_url: "",
+        logout_url: "",
+        initiate_login_url: "",
+      };
     }
 
     async componentDidMount() {
-      this.props.auth.getAccessToken().then((result) => {
-        this.state.accessToken = result;
-      });
+      this.state.accessToken = this.props.authState.accessToken;
     }
 
     onChange = (e) => {
@@ -30,7 +28,7 @@ export default withAuth(
         super easy to update the state
       */
       this.setState({ [e.target.name]: e.target.value });
-    }
+    };
 
     onSubmit = (e) => {
       e.preventDefault();
@@ -39,23 +37,29 @@ export default withAuth(
         app_name: this.state.app_name,
         login_url: this.state.login_url,
         logout_url: this.state.logout_url,
-        initiate_login_url: this.state.initiate_login_url
+        initiate_login_url: this.state.initiate_login_url,
       };
 
       const options = {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${this.state.accessToken}`
-        }
+          Authorization: `Bearer ${this.state.accessToken}`,
+        },
       };
-      axios.post(`${config.resourceServer}addApplication`,params,options).then((result) => {
-        console.log(result)
-      });
-      
-    }
+      axios
+        .post(`${config.resourceServer}addApplication`, params, options)
+        .then((result) => {
+          console.log(result);
+        });
+    };
 
     render() {
-      const { app_name, login_url, logout_url, initiate_login_url } = this.state;
+      const {
+        app_name,
+        login_url,
+        logout_url,
+        initiate_login_url,
+      } = this.state;
       return (
         <React.Fragment>
           <div>
@@ -89,10 +93,7 @@ export default withAuth(
                 </div>
               </div>
               <div className="form-group row">
-                <label
-                  htmlFor="login_url"
-                  className="col-sm-2 col-form-label"
-                >
+                <label htmlFor="login_url" className="col-sm-2 col-form-label">
                   Login redirect URI*
                 </label>
                 <div className="col-sm-10">
@@ -109,10 +110,7 @@ export default withAuth(
                 </div>
               </div>
               <div className="form-group row">
-                <label
-                  htmlFor="logout_url"
-                  className="col-sm-2 col-form-label"
-                >
+                <label htmlFor="logout_url" className="col-sm-2 col-form-label">
                   Logout redirect URI
                 </label>
                 <div className="col-sm-10">
