@@ -5,7 +5,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const fs = require("fs");
 // Read environment variables from ".env". Override environment vars if they are already set.
-const ENV = path.resolve(".\\environment\\.env");
+const ENV = path.resolve(".\\..\\.env");
 if (fs.existsSync(ENV)) {
   const envConfig = dotenv.parse(fs.readFileSync(ENV));
   Object.keys(envConfig).forEach(k => {

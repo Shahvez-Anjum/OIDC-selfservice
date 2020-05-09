@@ -35,24 +35,23 @@ export default withAuth(
     onSubmit = (e) => {
       e.preventDefault();
       // get our form data out of state
-      
-      const data = {}
-      data.app_name = this.state.app_name;
-      data.login_url = this.state.login_url;
-      data.logout_url = this.state.logout_url;
-      data.initiate_login_url = this.state.initiate_login_url;
+      const params = {
+        app_name: this.state.app_name,
+        login_url: this.state.login_url,
+        logout_url: this.state.logout_url,
+        initiate_login_url: this.state.initiate_login_url
+      };
 
-      axios.post(config.resourceServer + "addApplication",
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: this.state.accessToken,
-          },
-          data,
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.state.accessToken}`
         }
-      ).then((result) => {
+      };
+      axios.post(`${config.resourceServer}addApplication`,params,options).then((result) => {
         console.log(result)
       });
+      
     }
 
     render() {
