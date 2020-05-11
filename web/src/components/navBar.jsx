@@ -40,16 +40,16 @@ export default withOktaAuth(
     render() {
       return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          {/* <div className="navbar-brand">
+          <div className="navbar-brand">
             <img
-              src="/OpsErLogo.svg"
+              src="/logo.svg"
               width="30"
               height="30"
               className="d-inline-block align-top"
               alt="Logo"
               title="Ops Er"
             />
-          </div> */}
+          </div>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
