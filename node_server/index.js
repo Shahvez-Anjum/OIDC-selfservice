@@ -27,7 +27,7 @@ const okta = {
 };
 
 
-const app = express();
+const app = express();"
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
@@ -62,8 +62,8 @@ function authenticationRequired(req, res, next) {
 }
 
 app.post("/addApplication", authenticationRequired, function (req, res) {
-  
-  console.log("Body :"+req.body);
+
+  console.log("Body :" + req.body);
 
   let app_name = "";
   let login_url = "";
@@ -117,8 +117,8 @@ app.post("/addApplication", authenticationRequired, function (req, res) {
           redirect_uris: [login_url],
           post_logout_redirect_uris: [logout_url],
           initiate_login_uri: initiate_login_url,
-          response_types: ["token", "id_token", "code"],
-          grant_types: ["implicit", "authorization_code"],
+          response_types: ["code"],
+          grant_types: ["authorization_code"],
           application_type: "web",
         },
       },
@@ -126,13 +126,18 @@ app.post("/addApplication", authenticationRequired, function (req, res) {
     json: true,
   };
 
+
+  
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
     console.log(body);
   });
 
-  res.send("successfully submited");
+
+    res.send("Successfully Submited. Please wait for OKTA Admin to respond.");
 });
+
+
 
 app.listen(8000, function () {
   console.log("Node server is running..");

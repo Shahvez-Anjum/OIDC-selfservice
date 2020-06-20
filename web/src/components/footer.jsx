@@ -10,9 +10,9 @@ const Footer = () => (
     >
       For any questions or feedback, please{" "}
       <a
-        href="mailto:sanjum@adobe.com"
+        href="mailto:sdesk@adobe.com"
         style={{
-          fontSize: 12
+          fontSize: 13
         }}
       >
         contact us
